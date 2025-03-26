@@ -1,0 +1,27 @@
+#App {
+    text-align: center;
+
+    .content-container {
+        display: block;
+        justify-items: center;
+
+        .input-group {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+
+            .radio {
+                width: 30px;
+            }
+
+            .symbol {
+                margin-left: 80px;
+            }
+
+            .input {
+                margin-left: 10px;
+                width: 300px;
+            }
+        }
+    }
+}
