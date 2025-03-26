@@ -46,6 +46,8 @@ function App() {
   const [fbNum1, setFBNum1] = useState([]);
   const [bNum2, setBNum2] = useState([]);
 
+  const [result, setResult] = useState("");
+
   // [X]补
   const xb = useMemo(() => {
     if (bNum1.length <= 2) return "暂无数据";
@@ -80,7 +82,7 @@ function App() {
     if (type === 0) setSymbol1(e.target.value);
     else setSymbol2(e.target.value);
 
-    initialization();
+    clear();
   };
 
   const onNumChange = (type, e) => {
@@ -94,6 +96,15 @@ function App() {
 
     if (type === 0) setNum1(e.target.value);
     else setNum2(e.target.value);
+    clear();
+  };
+
+  const clear = () => {
+    setBNum1([]);
+    setFBNum1([]);
+    setBNum2([]);
+    setData(defaultData);
+    setResult("");
   };
 
   const initialization = () => {
@@ -105,22 +116,44 @@ function App() {
     setBNum2(bNum2);
 
     const ddata = { ...defaultData[0] };
-    ddata.partialProduct = bNum.length <= 2 ? "暂无数据" : "00.";
+    ddata.partialProduct = bNum.length <= 2 ? "暂无数据" : "\u00A0\u00A000.";
     for (let i = 0; i < bNum.length - 2; i++) ddata.partialProduct += "0";
+
     ddata.multiplier =
       bNum2.length <= 1 ? "暂无数据" : (bNum2[0] === 0 ? "0" : "1") + ".";
     for (let i = 1; i < bNum2.length; i++) ddata.multiplier += bNum2[i];
 
-    setData([ddata]);
+    return {
+      ddata,
+      bNum1: bNum,
+      fbNum1: fbNum,
+      bNum2,
+    };
   };
 
   const onCalculate = () => {
-    initialization();
+    const initRes = initialization();
+
+    const { res, symbol1, num1, extendNum } = supplementOneDigitMultiplication(
+      initRes.bNum1,
+      initRes.fbNum1,
+      initRes.bNum2,
+    );
+
+    setData([initRes.ddata, ...res]);
+
+    let str = "";
+    str += symbol1[0] + ".";
+    for (let i = 0; i < num1.length; i++) str += num1[i];
+    for (let i = 0; i < extendNum.length; i++) str += extendNum[i];
+    setResult(str);
   };
 
   return (
-    <div>
-      <div id="App">
+    <div id="App">
+      <h1>How Calculator</h1>
+      <h3>补码一位乘法计算器</h3>
+      <div className="content-container">
         <div className="input-group">
           <Radio.Group
             className="radio"
@@ -138,7 +171,6 @@ function App() {
             placeholder="请输入小数部分（二进制）"
             value={num1}
             onChange={(e) => onNumChange(0, e)}
-            onBlur={initialization}
           />
         </div>
         <div className="input-group">
@@ -158,7 +190,6 @@ function App() {
             placeholder="请输入小数部分（二进制）"
             value={num2}
             onChange={(e) => onNumChange(1, e)}
-            onBlur={initialization}
           />
         </div>
 
@@ -172,16 +203,46 @@ function App() {
       </div>
 
       <Table dataSource={data} pagination={false}>
-        <Column title="步数" dataIndex="step" key="step" />
-        <Column title="操作" dataIndex="operate" key="operate" />
+        <Column title="步数" dataIndex="step" key="step" align="left" />
+        <Column
+          title="操作"
+          dataIndex="operate"
+          key="operate"
+          align="left"
+          render={(item) => (
+            <div style={{ "white-space": "pre-line" }}>{item}</div>
+          )}
+        />
         <Column
           title="部分积"
           dataIndex="partialProduct"
           key="partialProduct"
+          align="left"
+          render={(item) => (
+            <div style={{ "white-space": "pre-line" }}>{item}</div>
+          )}
         />
-        <Column title="乘数" dataIndex="multiplier" key="multiplier" />
-        <Column title="Yn+1" dataIndex="yny" key="yny" />
+        <Column
+          title="乘数"
+          dataIndex="multiplier"
+          key="multiplier"
+          align="left"
+          render={(item) => (
+            <div style={{ "white-space": "pre-line" }}>{item}</div>
+          )}
+        />
+        <Column
+          title="Yn+1"
+          dataIndex="yny"
+          key="yny"
+          align="left"
+          render={(item) => (
+            <div style={{ "white-space": "pre-line" }}>{item}</div>
+          )}
+        />
       </Table>
+
+      <h3>[XY]补 = {result ? result : "暂无数据"}</h3>
     </div>
   );
 }

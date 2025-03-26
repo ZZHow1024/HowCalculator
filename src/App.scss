@@ -1,23 +1,27 @@
 #App {
-    display: block;
-    justify-items: center;
+    text-align: center;
 
-    .input-group {
-        display: flex;
-        justify-content: center;
-        align-content: center;
+    .content-container {
+        display: block;
+        justify-items: center;
 
-        .radio {
-            width: 30px;
-        }
+        .input-group {
+            display: flex;
+            justify-content: center;
+            align-content: center;
 
-        .symbol {
-            margin-left: 80px;
-        }
+            .radio {
+                width: 30px;
+            }
 
-        .input {
-            margin-left: 10px;
-            width: 300px;
+            .symbol {
+                margin-left: 80px;
+            }
+
+            .input {
+                margin-left: 10px;
+                width: 300px;
+            }
         }
     }
 }
