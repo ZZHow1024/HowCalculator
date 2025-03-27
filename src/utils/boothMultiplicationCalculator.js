@@ -187,7 +187,7 @@ export const supplementOneDigitMultiplication = (xb, xfb, yb) => {
 
     partialProduct += "\n\u00A0\u00A0";
     for (let i = 0; i < symbol1.length + num1.length; i++)
-      partialProduct += "--";
+      partialProduct += "-";
 
     // 加操作完的部分积
     partialProduct += "\n\u00A0\u00A0";

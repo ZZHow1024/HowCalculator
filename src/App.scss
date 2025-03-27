@@ -1,27 +1,79 @@
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
 #App {
+    $header-height: 75px;
+    $header-color: rgb(218, 218, 218);
+    $header-text-color: rgb(221, 221, 221);
+    $footer-height: 3px;
+
+    height: 100%;
     text-align: center;
 
-    .content-container {
-        display: block;
-        justify-items: center;
-
-        .input-group {
+    .layout {
+        .header {
+            z-index: 999;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
+            align-items: center;
+            height: $header-height;
+            color: $header-text-color;
+            background: $header-color;
+
+            .logo {
+                cursor: pointer;
+                height: 64px;
+                width: 64px;
+                background-image: url("assets/HowCalculator.png");
+                background-size: 100% 100%;
+            }
+
+            .menu {
+                flex: 1;
+                min-width: 0;
+                color: $header-text-color;
+                background: rgba(0, 0, 0, 0);
+            }
+        }
+
+        .content-container {
+            margin: $header-height 0;
+
+            .title {
+                position: fixed;
+                width: 100vw;
+                top: $header-height;
+                font-size: 35px;
+                background: #DADADA;
+                z-index: 999;
+            }
+
+            .content {
+                padding: 0 30px;
+                margin-bottom: $footer-height + 30px;
+                position: relative;
+                top: 38px;
+                width: 100vw;
+                min-height: calc(100vh - $header-height - $footer-height - 130px);
+            }
+        }
+
+        .footer {
+            position: fixed;
+            height: $footer-height;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            background: #DADADA;
             justify-content: center;
-            align-content: center;
-
-            .radio {
-                width: 30px;
-            }
-
-            .symbol {
-                margin-left: 80px;
-            }
-
-            .input {
-                margin-left: 10px;
-                width: 300px;
-            }
+            align-items: center;
         }
     }
 }

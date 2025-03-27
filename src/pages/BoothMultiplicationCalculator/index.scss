@@ -1,0 +1,43 @@
+#BoothMultiplicationCalculator {
+  text-align: center;
+
+  .breadcrumb {
+    margin-top: 8px;
+    margin-left: 15px;
+
+    .breadcrumb-item {
+      cursor: pointer;
+    }
+  }
+
+  .content-container {
+    display: block;
+    justify-items: center;
+
+    .input-group {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+
+      .radio {
+        width: 30px;
+      }
+
+      .symbol {
+        height: 35px;
+        margin-left: 80px;
+        line-height: 35px;
+      }
+
+      .input {
+        margin-left: 10px;
+        width: 150px;
+      }
+    }
+  }
+
+  .output-content {
+    font-size: 20px;
+    margin-top: 5px;
+  }
+}

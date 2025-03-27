@@ -1,0 +1,64 @@
+#BoothMultiplicationCalculator {
+  text-align: center;
+
+  .breadcrumb {
+    margin-top: 8px;
+    margin-left: 15px;
+
+    .breadcrumb-item {
+      cursor: pointer;
+    }
+  }
+
+  .content-container {
+    display: block;
+    justify-items: center;
+
+    .logo {
+      height: 20vh;
+      width: 20vh;
+      background-image: url("../../assets/HowCalculator.png");
+      background-size: 100% 100%;
+    }
+
+    .content-text {
+      font-size: 28px;
+      margin-top: 5px;
+    }
+
+    .content-text-small {
+      font-size: 15px;
+      margin-top: 5px;
+    }
+
+    .button-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+
+      .button {
+        position: relative;
+        margin: 10px 10px;
+        color: white;
+        font-size: 10px;
+        height: 20vh;
+        width: 300px;
+        display: block;
+        justify-content: center;
+        align-content: center;
+        cursor: pointer;
+        border-radius: 25px;
+        background: rgb(51, 51, 51);
+        box-shadow: rgba(83, 83, 83, 0.79) 10px 10px 10px;
+        transition: 0.5s;
+      }
+
+      .button:hover {
+        opacity: 80%;
+      }
+    }
+  }
+}
