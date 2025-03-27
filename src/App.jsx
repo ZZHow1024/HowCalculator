@@ -1,13 +1,31 @@
 import React from "react";
 import "@/App.scss";
-import { RouterProvider } from "react-router-dom";
-import router from "./router/index.jsx";
+import {
+  matchRoutes,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { Content, Header, Footer } from "antd/es/layout/layout";
 import { ConfigProvider, Layout, Menu } from "antd";
 
-const items = [{ key: 1, label: "补码一位乘法" }];
+const items = [
+  { key: "/", label: "补码一位乘法" },
+  { key: "/number-base-conversion", label: "数制转换" },
+];
+
+const routes = [{ path: "/" }, { path: "/number-base-conversion" }];
 
 function App() {
+  const navigate = useNavigate();
+
+  const switchRouter = (item) => {
+    navigate(item.key);
+  };
+
+  const location = useLocation();
+  const [{ route }] = matchRoutes(routes, location);
+
   return (
     <div id="App">
       <ConfigProvider
@@ -24,14 +42,15 @@ function App() {
             <Menu
               className="menu"
               mode="horizontal"
-              defaultSelectedKeys={["1"]}
+              defaultSelectedKeys={[route.path]}
               items={items}
+              onClick={switchRouter}
             />
           </Header>
           <Content className="content-container">
             <div className="title">How Calculator</div>
             <div className="content">
-              <RouterProvider router={router} />
+              <Outlet />
             </div>
           </Content>
           <Footer className="footer">
