@@ -7,6 +7,7 @@ import {
   initializationY,
   supplementOneDigitMultiplication,
 } from "@/utils/boothMultiplicationCalculator.js";
+import { useNavigate } from "react-router-dom";
 
 const option = [
   {
@@ -35,6 +36,8 @@ const containsOnlyAllowedChars = (str, allowedChars) => {
 };
 
 export default function Index() {
+  const navigator = useNavigate();
+
   const [data, setData] = useState(defaultData);
 
   const [num1, setNum1] = useState("");
@@ -158,8 +161,15 @@ export default function Index() {
   return (
     <div id="BoothMultiplicationCalculator">
       <Breadcrumb className="breadcrumb">
-        <Breadcrumb.Item>首页</Breadcrumb.Item>
-        <Breadcrumb.Item>补码一位乘法计算器</Breadcrumb.Item>
+        <Breadcrumb.Item
+          className="breadcrumb-item"
+          onClick={() => navigator("/")}
+        >
+          首页
+        </Breadcrumb.Item>
+        <Breadcrumb.Item className="breadcrumb-item">
+          补码一位乘法计算器
+        </Breadcrumb.Item>
       </Breadcrumb>
       <div className="content-container">
         <div style={{ marginBottom: "3px" }}>

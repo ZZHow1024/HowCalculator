@@ -9,6 +9,7 @@ import {
   hexadecimalToDecimal,
   octalToDecimal,
 } from "@/utils/numberBaseConversion.js";
+import { useNavigate } from "react-router-dom";
 
 const containsOnlyAllowedChars = (str, allowedChars) => {
   const regex = new RegExp(`^[${allowedChars}]+$`);
@@ -16,6 +17,8 @@ const containsOnlyAllowedChars = (str, allowedChars) => {
 };
 
 export default function Index() {
+  const navigator = useNavigate();
+
   const [binary, setBinary] = useState(""); // 二进制
   const [octal, setOctal] = useState(""); // 八进制
   const [decimal, setDecimal] = useState(""); // 十进制
@@ -122,8 +125,13 @@ export default function Index() {
   return (
     <div id="NumberBaseConversion">
       <Breadcrumb className="breadcrumb">
-        <Breadcrumb.Item>首页</Breadcrumb.Item>
-        <Breadcrumb.Item>数制转换</Breadcrumb.Item>
+        <Breadcrumb.Item
+          className="breadcrumb-item"
+          onClick={() => navigator("/")}
+        >
+          首页
+        </Breadcrumb.Item>
+        <Breadcrumb.Item className="breadcrumb-item">数制转换</Breadcrumb.Item>
       </Breadcrumb>
       <div className="content-container">
         <div style={{ marginBottom: "3px" }}>

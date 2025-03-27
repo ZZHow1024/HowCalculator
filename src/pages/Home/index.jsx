@@ -8,7 +8,7 @@ export default function Index() {
   return (
     <div id="BoothMultiplicationCalculator">
       <Breadcrumb className="breadcrumb">
-        <Breadcrumb.Item>首页</Breadcrumb.Item>
+        <Breadcrumb.Item className="breadcrumb-item">首页</Breadcrumb.Item>
       </Breadcrumb>
       <div className="content-container">
         <div className="logo" />
