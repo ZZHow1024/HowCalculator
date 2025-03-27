@@ -1,31 +1,22 @@
 import React from "react";
 import "@/App.scss";
-import {
-  matchRoutes,
-  Outlet,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Content, Header, Footer } from "antd/es/layout/layout";
 import { ConfigProvider, Layout, Menu } from "antd";
 
 const items = [
-  { key: "/", label: "补码一位乘法" },
+  { key: "/", label: "首页" },
+  { key: "/booth-multiplication-calculator", label: "补码一位乘法" },
   { key: "/number-base-conversion", label: "数制转换" },
 ];
 
-const routes = [{ path: "/" }, { path: "/number-base-conversion" }];
-
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const switchRouter = (item) => {
     navigate(item.key);
   };
-
-  const location = useLocation();
-  const [{ route }] = matchRoutes(routes, location);
-
   return (
     <div id="App">
       <ConfigProvider
@@ -38,11 +29,11 @@ function App() {
       >
         <Layout className="layout">
           <Header className="header">
-            <div className="logo" />
+            <div className="logo" onClick={() => navigate("/")} />
             <Menu
               className="menu"
               mode="horizontal"
-              defaultSelectedKeys={[route.path]}
+              selectedKeys={[location.pathname]}
               items={items}
               onClick={switchRouter}
             />
@@ -54,7 +45,7 @@ function App() {
             </div>
           </Content>
           <Footer className="footer">
-            How Calculator © 2023-{new Date().getFullYear()}
+            How Calculator © {new Date().getFullYear()}
             <br />
             Designed by ZZHow
           </Footer>

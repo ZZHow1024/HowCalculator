@@ -2,6 +2,7 @@ import { createHashRouter } from "react-router-dom";
 
 import App from "@/App.jsx";
 import { lazy, Suspense } from "react";
+import Home from "@/pages/Home";
 
 const BoothMultiplicationCalculator = lazy(
   () => import("@/pages/BoothMultiplicationCalculator"),
@@ -15,6 +16,10 @@ const router = createHashRouter([
     children: [
       {
         index: true,
+        element: <Home />,
+      },
+      {
+        path: "/booth-multiplication-calculator",
         element: (
           <Suspense fallback={"加载中"}>
             <BoothMultiplicationCalculator />

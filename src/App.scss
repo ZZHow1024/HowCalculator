@@ -27,6 +27,7 @@ body {
             background: $header-color;
 
             .logo {
+                cursor: pointer;
                 height: 64px;
                 width: 64px;
                 background-image: url("assets/HowCalculator.png");
