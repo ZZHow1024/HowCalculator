@@ -1,6 +1,14 @@
 import "./index.scss";
 import { Breadcrumb, Button, Form, Input, message } from "antd";
 import React, { useState } from "react";
+import {
+  binaryToDecimal,
+  decimalToBinary,
+  decimalToHexadecimal,
+  decimalToOctal,
+  hexadecimalToDecimal,
+  octalToDecimal,
+} from "@/utils/numberBaseConversion.js";
 
 const containsOnlyAllowedChars = (str, allowedChars) => {
   const regex = new RegExp(`^[${allowedChars}]+$`);
@@ -22,7 +30,18 @@ export default function Index() {
       return;
     }
 
-    setBinary(e.target.value.replace("2", "0"));
+    const bBinary = e.target.value.replace("2", "0");
+    if (bBinary === "") {
+      onClear();
+      return;
+    }
+
+    setBinary(bBinary);
+
+    const dDecimal = binaryToDecimal(bBinary);
+    setDecimal(dDecimal);
+    setOctal(decimalToOctal(dDecimal));
+    setHexadecimal(decimalToHexadecimal(dDecimal));
   };
 
   const onOctalChange = (e) => {
@@ -34,7 +53,18 @@ export default function Index() {
       return;
     }
 
-    setOctal(e.target.value);
+    const oOctal = e.target.value;
+    if (oOctal === "") {
+      onClear();
+      return;
+    }
+
+    setOctal(oOctal);
+
+    const dDecimal = octalToDecimal(oOctal);
+    setDecimal(dDecimal);
+    setBinary(decimalToBinary(dDecimal));
+    setHexadecimal(decimalToHexadecimal(dDecimal));
   };
 
   const onDecimalChange = (e) => {
@@ -46,7 +76,17 @@ export default function Index() {
       return;
     }
 
-    setDecimal(e.target.value);
+    const dDecimal = e.target.value;
+    if (dDecimal === "") {
+      onClear();
+      return;
+    }
+
+    setDecimal(dDecimal);
+
+    setBinary(decimalToBinary(dDecimal));
+    setOctal(decimalToOctal(dDecimal));
+    setHexadecimal(decimalToHexadecimal(dDecimal));
   };
 
   const onHexadecimalChange = (e) => {
@@ -58,15 +98,18 @@ export default function Index() {
       return;
     }
 
-    setHexadecimal(
-      e.target.value
-        .replace("a", "A")
-        .replace("b", "B")
-        .replace("c", "C")
-        .replace("d", "D")
-        .replace("e", "E")
-        .replace("f", "F"),
-    );
+    const hHexadecimal = e.target.value.toUpperCase();
+    if (hHexadecimal === "") {
+      onClear();
+      return;
+    }
+
+    setHexadecimal(hHexadecimal);
+
+    const dDecimal = hexadecimalToDecimal(hHexadecimal);
+    setDecimal(dDecimal);
+    setBinary(decimalToBinary(dDecimal));
+    setOctal(decimalToOctal(dDecimal));
   };
 
   const onClear = () => {
