@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 
 import App from "@/App.jsx";
 import { lazy, Suspense } from "react";
@@ -8,7 +8,7 @@ const BoothMultiplicationCalculator = lazy(
 );
 const NumberBaseConversion = lazy(() => import("@/pages/NumberBaseConversion"));
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
