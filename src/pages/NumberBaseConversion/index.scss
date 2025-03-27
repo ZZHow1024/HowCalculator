@@ -9,5 +9,9 @@
   .content-container {
     display: block;
     justify-items: center;
+
+    .form {
+      width: 80vw;
+    }
   }
 }
