@@ -24,6 +24,9 @@ export default function Index() {
             https://github.com/ZZHow1024/HowCalculator
           </a>
         </div>
+        <div className="content-text-small">
+          开源许可证：GNU General Public License v3.0
+        </div>
 
         <Row>
           <Col span={12}>
