@@ -39,13 +39,13 @@ function App() {
             />
           </Header>
           <Content className="content-container">
-            <div className="title">How Calculator</div>
+            <div className="title">HowCalculator</div>
             <div className="content">
               <Outlet />
             </div>
           </Content>
           <Footer className="footer">
-            How Calculator © {new Date().getFullYear()}
+            HowCalculator © {new Date().getFullYear()}
             <br />
             Designed by ZZHow
           </Footer>
