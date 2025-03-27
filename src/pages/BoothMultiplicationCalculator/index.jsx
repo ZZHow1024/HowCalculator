@@ -88,14 +88,14 @@ export default function Index() {
   const onNumChange = (type, e) => {
     if (
       e.target.value !== "" &&
-      !containsOnlyAllowedChars(e.target.value, "01 ")
+      !containsOnlyAllowedChars(e.target.value, "012 ")
     ) {
       message.info("仅允许输入 0 / 1");
       return;
     }
 
-    if (type === 0) setNum1(e.target.value);
-    else setNum2(e.target.value);
+    if (type === 0) setNum1(e.target.value.replace("2", "0"));
+    else setNum2(e.target.value.replace("2", "0"));
     clear();
   };
 
@@ -131,6 +131,12 @@ export default function Index() {
     };
   };
 
+  const onClear = () => {
+    setNum1("");
+    setNum2("");
+    clear();
+  };
+
   const onCalculate = () => {
     const initRes = initialization();
 
@@ -156,6 +162,9 @@ export default function Index() {
         <Breadcrumb.Item>补码一位乘法计算器</Breadcrumb.Item>
       </Breadcrumb>
       <div className="content-container">
+        <div style={{ marginBottom: "3px" }}>
+          提示：输入二进制数时，可以使用 2 代替 0 输入。
+        </div>
         <div className="input-group">
           <Radio.Group
             className="radio"
@@ -170,7 +179,7 @@ export default function Index() {
           <div className="symbol">{symbol1 + "."}</div>
           <Input
             className="input"
-            placeholder="请输入数值部分（二进制）"
+            placeholder="请输入数值部分"
             value={num1}
             onChange={(e) => onNumChange(0, e)}
           />
@@ -189,17 +198,26 @@ export default function Index() {
           <div className="symbol">{symbol2 + "."}</div>
           <Input
             className="input"
-            placeholder="请输入数值部分（二进制）"
+            placeholder="请输入数值部分"
             value={num2}
             onChange={(e) => onNumChange(1, e)}
           />
         </div>
-
         <div className="output-content">[X]补 = {xb}</div>
         <div className="output-content">[-X]补 = {fxb}</div>
         <div className="output-content">[Y]补 = {yb}</div>
-
-        <Button type="primary" onClick={onCalculate}>
+        <Button
+          type="primary"
+          onClick={onClear}
+          style={{ marginTop: "10px", marginRight: "5px" }}
+        >
+          清空
+        </Button>
+        <Button
+          type="primary"
+          onClick={onCalculate}
+          style={{ marginLeft: "5px" }}
+        >
           计算
         </Button>
       </div>

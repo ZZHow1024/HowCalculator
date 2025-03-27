@@ -126,6 +126,9 @@ export default function Index() {
         <Breadcrumb.Item>数制转换</Breadcrumb.Item>
       </Breadcrumb>
       <div className="content-container">
+        <div style={{ marginBottom: "3px" }}>
+          提示：输入二进制数时，可以使用 2 代替 0 输入。
+        </div>
         <Form
           className="form"
           labelCol={{
