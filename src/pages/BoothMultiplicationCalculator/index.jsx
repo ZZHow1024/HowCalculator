@@ -232,45 +232,51 @@ export default function Index() {
         </Button>
       </div>
 
-      <Table dataSource={data} pagination={false}>
-        <Column title="步数" dataIndex="step" key="step" align="left" />
-        <Column
-          title="操作"
-          dataIndex="operate"
-          key="operate"
-          align="left"
-          render={(item) => (
-            <div style={{ "white-space": "pre-line" }}>{item}</div>
-          )}
-        />
-        <Column
-          title="部分积"
-          dataIndex="partialProduct"
-          key="partialProduct"
-          align="left"
-          render={(item) => (
-            <div style={{ "white-space": "pre-line" }}>{item}</div>
-          )}
-        />
-        <Column
-          title="乘数"
-          dataIndex="multiplier"
-          key="multiplier"
-          align="left"
-          render={(item) => (
-            <div style={{ "white-space": "pre-line" }}>{item}</div>
-          )}
-        />
-        <Column
-          title="Yn+1"
-          dataIndex="yny"
-          key="yny"
-          align="left"
-          render={(item) => (
-            <div style={{ "white-space": "pre-line" }}>{item}</div>
-          )}
-        />
-      </Table>
+      <div className="table">
+        <Table
+          dataSource={data}
+          pagination={false}
+          scroll={{ x: "max-content" }}
+        >
+          <Column title="步数" dataIndex="step" key="step" align="left" />
+          <Column
+            title="操作"
+            dataIndex="operate"
+            key="operate"
+            align="left"
+            render={(item) => (
+              <div style={{ "white-space": "pre-line" }}>{item}</div>
+            )}
+          />
+          <Column
+            title="部分积"
+            dataIndex="partialProduct"
+            key="partialProduct"
+            align="left"
+            render={(item) => (
+              <div style={{ "white-space": "pre-line" }}>{item}</div>
+            )}
+          />
+          <Column
+            title="乘数"
+            dataIndex="multiplier"
+            key="multiplier"
+            align="left"
+            render={(item) => (
+              <div style={{ "white-space": "pre-line" }}>{item}</div>
+            )}
+          />
+          <Column
+            title="Yn+1"
+            dataIndex="yny"
+            key="yny"
+            align="left"
+            render={(item) => (
+              <div style={{ "white-space": "pre-line" }}>{item}</div>
+            )}
+          />
+        </Table>
+      </div>
 
       <h3>[XY]补 = {result ? result : "暂无数据"}</h3>
     </div>

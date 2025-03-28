@@ -59,7 +59,7 @@ body {
                 margin-bottom: $footer-height + 30px;
                 position: relative;
                 top: 38px;
-                width: 100vw;
+                width: 100%;
                 min-height: calc(100vh - $header-height - $footer-height - 130px);
             }
         }
