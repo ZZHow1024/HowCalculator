@@ -13,7 +13,7 @@ export default function Index() {
       <div className="content-container">
         <div className="logo" />
         <div className="content-text">HowCalculator</div>
-        <div className="content-text">Version: 0.2.0（公测版）</div>
+        <div className="content-text">Version: 0.2.1（公测版）</div>
         <div>
           <span className="content-text-small">GitHub 仓库：</span>
           <a

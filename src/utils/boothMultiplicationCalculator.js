@@ -86,7 +86,7 @@ export const initializationX = (symbol, num) => {
   };
 };
 
-// 初始化 X（单符号位）
+// 初始化 Y（单符号位）
 export const initializationY = (symbol, num) => {
   const yNum = []; // 原码
   const fNum = []; // 反码
@@ -132,6 +132,7 @@ export const initializationY = (symbol, num) => {
   return bNum;
 };
 
+// 补码一位乘法
 export const supplementOneDigitMultiplication = (xb, xfb, yb) => {
   const res = [];
 
