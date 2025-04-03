@@ -6,7 +6,7 @@ import {
   initializationX,
   initializationY,
   supplementOneDigitMultiplication,
-} from "@/utils/boothMultiplicationCalculator.js";
+} from "@/utils/multiplicationCalculator.js";
 import { useNavigate } from "react-router-dom";
 
 const option = [
