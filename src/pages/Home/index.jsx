@@ -33,13 +33,27 @@ export default function Index() {
             <div className="button-container">
               <div
                 className="button"
+                onClick={() =>
+                  navigate("/sign-magnitude-multiplication-calculator")
+                }
+              >
+                <h1>原码一位乘法</h1>
+              </div>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className="button-container">
+              <div
+                className="button"
                 onClick={() => navigate("/booth-multiplication-calculator")}
               >
                 <h1>补码一位乘法</h1>
               </div>
             </div>
           </Col>
-          <Col span={12}>
+        </Row>
+        <Row>
+          <Col span={24}>
             <div className="button-container">
               <div
                 className="button"

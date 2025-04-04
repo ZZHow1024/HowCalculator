@@ -22,6 +22,14 @@ const router = createHashRouter([
         element: <Home />,
       },
       {
+        path: "/sign-magnitude-multiplication-calculator",
+        element: (
+          <Suspense fallback={"加载中"}>
+            <SignMagnitudeMultiplicationCalculator />
+          </Suspense>
+        ),
+      },
+      {
         path: "/booth-multiplication-calculator",
         element: (
           <Suspense fallback={"加载中"}>
@@ -34,14 +42,6 @@ const router = createHashRouter([
         element: (
           <Suspense fallback={"加载中"}>
             <NumberBaseConversion />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/sign-magnitude-multiplication-calculator",
-        element: (
-          <Suspense fallback={"加载中"}>
-            <SignMagnitudeMultiplicationCalculator />
           </Suspense>
         ),
       },
