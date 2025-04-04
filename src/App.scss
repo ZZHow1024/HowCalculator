@@ -23,23 +23,7 @@ body {
             display: flex;
             align-items: center;
             height: $header-height;
-            color: $header-text-color;
             background: $header-color;
-
-            .logo {
-                cursor: pointer;
-                height: 64px;
-                width: 64px;
-                background-image: url("assets/HowCalculator.png");
-                background-size: 100% 100%;
-            }
-
-            .menu {
-                flex: 1;
-                min-width: 0;
-                color: $header-text-color;
-                background: rgba(0, 0, 0, 0);
-            }
         }
 
         .content-container {
