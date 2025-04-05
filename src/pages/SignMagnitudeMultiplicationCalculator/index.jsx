@@ -1,13 +1,9 @@
 import "./index.scss";
 import { Breadcrumb, Button, Input, message, Radio, Table } from "antd";
-import Column from "antd/es/table/Column";
-import React, { useMemo, useState } from "react";
-import {
-  initializationX,
-  initializationY,
-  supplementOneDigitMultiplication,
-} from "@/utils/multiplicationCalculator.js";
 import { useNavigate } from "react-router-dom";
+import React, { useMemo, useState } from "react";
+import Column from "antd/es/table/Column.js";
+import { originalCodeOneDigitMultiplication } from "@/utils/multiplicationCalculator.js";
 
 const option = [
   {
@@ -26,7 +22,6 @@ const defaultData = [
     operate: "初始化",
     partialProduct: "暂无数据",
     multiplier: "暂无数据",
-    yny: "0",
   },
 ];
 
@@ -45,41 +40,30 @@ export default function Index() {
   const [num2, setNum2] = useState("");
   const [symbol2, setSymbol2] = useState("0");
 
-  const [bNum1, setBNum1] = useState([]);
-  const [fbNum1, setFBNum1] = useState([]);
-  const [bNum2, setBNum2] = useState([]);
+  const [yNum1, setYNum1] = useState([]); // |X| 的原码
+  const [yNum2, setYNum2] = useState([]); // |Y| 的原码
 
   const [result, setResult] = useState("");
 
-  // [X]补
-  const xb = useMemo(() => {
-    if (bNum1.length <= 2) return "暂无数据";
+  // |X|
+  const xy = useMemo(() => {
+    if (yNum1.length <= 2) return "暂无数据";
 
-    let str = (bNum1[0] ? "11" : "00") + ".";
-    for (let i = 2; i < bNum1.length; i++) str += bNum1[i];
-
-    return str;
-  }, [bNum1]);
-
-  // [-X]补
-  const fxb = useMemo(() => {
-    if (fbNum1.length <= 2) return "暂无数据";
-
-    let str = (fbNum1[0] ? "11" : "00") + ".";
-    for (let i = 2; i < fbNum1.length; i++) str += fbNum1[i];
+    let str = (yNum1[0] ? "11" : "00") + ".";
+    for (let i = 2; i < yNum1.length; i++) str += yNum1[i];
 
     return str;
-  }, [fbNum1]);
+  }, [yNum1]);
 
-  // [X]补
-  const yb = useMemo(() => {
-    if (bNum2.length <= 1) return "暂无数据";
+  // |Y|
+  const yy = useMemo(() => {
+    if (yNum2.length <= 1) return "暂无数据";
 
-    let str = (bNum2[0] ? "1" : "0") + ".";
-    for (let i = 1; i < bNum2.length; i++) str += bNum2[i];
+    let str = ".";
+    for (let i = 1; i < yNum2.length; i++) str += yNum2[i];
 
     return str;
-  }, [bNum2]);
+  }, [yNum2]);
 
   const onSymbolChange = (type, e) => {
     if (type === 0) setSymbol1(e.target.value);
@@ -103,34 +87,35 @@ export default function Index() {
   };
 
   const clear = () => {
-    setBNum1([]);
-    setFBNum1([]);
-    setBNum2([]);
+    setYNum1([]);
+    setYNum2([]);
     setData(defaultData);
     setResult("");
   };
 
   const initialization = () => {
-    const { bNum, fbNum } = initializationX(symbol1, num1);
-    setBNum1(bNum);
-    setFBNum1(fbNum);
+    const yNum1 = [];
+    yNum1.push(parseInt(symbol1));
+    yNum1.push(parseInt(symbol1));
+    for (let i = 0; i < num1.length; i++) yNum1.push(parseInt(num1[i]));
+    setYNum1(yNum1);
 
-    const bNum2 = initializationY(symbol2, num2);
-    setBNum2(bNum2);
+    const yNum2 = [];
+    yNum2.push(parseInt(symbol2));
+    for (let i = 0; i < num2.length; i++) yNum2.push(parseInt(num2[i]));
+    setYNum2(yNum2);
 
     const ddata = { ...defaultData[0] };
-    ddata.partialProduct = bNum.length <= 2 ? "暂无数据" : "\u00A0\u00A000.";
-    for (let i = 0; i < bNum.length - 2; i++) ddata.partialProduct += "0";
+    ddata.partialProduct = yNum1.length <= 2 ? "暂无数据" : "\u00A0\u00A000.";
+    for (let i = 0; i < yNum1.length - 2; i++) ddata.partialProduct += "0";
 
-    ddata.multiplier =
-      bNum2.length <= 1 ? "暂无数据" : (bNum2[0] === 0 ? "0" : "1") + ".";
-    for (let i = 1; i < bNum2.length; i++) ddata.multiplier += bNum2[i];
+    ddata.multiplier = yNum2.length <= 1 ? "暂无数据" : ".";
+    for (let i = 1; i < yNum2.length; i++) ddata.multiplier += yNum2[i];
 
     return {
       ddata,
-      bNum1: bNum,
-      fbNum1: fbNum,
-      bNum2,
+      yNum1,
+      yNum2,
     };
   };
 
@@ -143,23 +128,20 @@ export default function Index() {
   const onCalculate = () => {
     const initRes = initialization();
 
-    const { res, symbol1, num1, extendNum } = supplementOneDigitMultiplication(
-      initRes.bNum1,
-      initRes.fbNum1,
-      initRes.bNum2,
-    );
+    const { res, symbol1, num1, extendNum } =
+      originalCodeOneDigitMultiplication(initRes.yNum1, initRes.yNum2);
 
     setData([initRes.ddata, ...res]);
 
     let str = "";
-    str += symbol1[0] + ".";
+    str += (symbol1[0] ^ symbol2[0]) + ".";
     for (let i = 0; i < num1.length; i++) str += num1[i];
     for (let i = 0; i < extendNum.length; i++) str += extendNum[i];
     setResult(str);
   };
 
   return (
-    <div id="BoothMultiplicationCalculator">
+    <div id="SignMagnitudeMultiplicationCalculator">
       <Breadcrumb className="breadcrumb">
         <Breadcrumb.Item
           className="breadcrumb-item"
@@ -168,7 +150,7 @@ export default function Index() {
           首页
         </Breadcrumb.Item>
         <Breadcrumb.Item className="breadcrumb-item">
-          补码一位乘法计算器
+          原码一位乘法计算器
         </Breadcrumb.Item>
       </Breadcrumb>
       <div className="content-container">
@@ -213,9 +195,8 @@ export default function Index() {
             onChange={(e) => onNumChange(1, e)}
           />
         </div>
-        <div className="output-content">[X]补 = {xb}</div>
-        <div className="output-content">[-X]补 = {fxb}</div>
-        <div className="output-content">[Y]补 = {yb}</div>
+        <div className="output-content">[X]原 = {xy}</div>
+        <div className="output-content">[Y]原 = {yy}</div>
         <Button
           type="primary"
           onClick={onClear}
@@ -249,7 +230,7 @@ export default function Index() {
             )}
           />
           <Column
-            title="部分积"
+            title="部分积A"
             dataIndex="partialProduct"
             key="partialProduct"
             align="left"
@@ -258,18 +239,9 @@ export default function Index() {
             )}
           />
           <Column
-            title="乘数"
+            title="乘数|Y|"
             dataIndex="multiplier"
             key="multiplier"
-            align="left"
-            render={(item) => (
-              <div style={{ "white-space": "pre-line" }}>{item}</div>
-            )}
-          />
-          <Column
-            title="Yn+1"
-            dataIndex="yny"
-            key="yny"
             align="left"
             render={(item) => (
               <div style={{ "white-space": "pre-line" }}>{item}</div>
@@ -278,7 +250,13 @@ export default function Index() {
         </Table>
       </div>
 
-      <h3>[XY]补 = {result ? result : "暂无数据"}</h3>
+      <h3>再加上符号位，∴ [XY]原 = {result ? result : "暂无数据"}</h3>
+      <h3>
+        XY＝
+        {result
+          ? (result[0] === "0" ? "+" : "-") + result.substring(2, result.length)
+          : "暂无数据"}
+      </h3>
     </div>
   );
 }

@@ -50,10 +50,12 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Changelog
 
+- 0.3.0
+    - feat: Add one-digit multiplication for original code
 - 0.2.1
     - perf: Optimize Complementary One-Bit Multiplication experience on mobile
 - 0.2.0
     - feat: Added number system conversion
     - perf: Optimize interface layout
 - 0.1.0
-    - feat: Added One-Complement Multiplication
+    - feat: Add one-digit multiplication for two’s complement

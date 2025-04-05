@@ -13,7 +13,7 @@ export default function Index() {
       <div className="content-container">
         <div className="logo" />
         <div className="content-text">HowCalculator</div>
-        <div className="content-text">Version: 0.2.1（公测版）</div>
+        <div className="content-text">Version: 0.3.0（公测版）</div>
         <div>
           <span className="content-text-small">GitHub 仓库：</span>
           <a
@@ -33,13 +33,27 @@ export default function Index() {
             <div className="button-container">
               <div
                 className="button"
+                onClick={() =>
+                  navigate("/sign-magnitude-multiplication-calculator")
+                }
+              >
+                <h1>原码一位乘法</h1>
+              </div>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className="button-container">
+              <div
+                className="button"
                 onClick={() => navigate("/booth-multiplication-calculator")}
               >
                 <h1>补码一位乘法</h1>
               </div>
             </div>
           </Col>
-          <Col span={12}>
+        </Row>
+        <Row>
+          <Col span={24}>
             <div className="button-container">
               <div
                 className="button"

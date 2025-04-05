@@ -8,6 +8,9 @@ const BoothMultiplicationCalculator = lazy(
   () => import("@/pages/BoothMultiplicationCalculator"),
 );
 const NumberBaseConversion = lazy(() => import("@/pages/NumberBaseConversion"));
+const SignMagnitudeMultiplicationCalculator = lazy(
+  () => import("@/pages/SignMagnitudeMultiplicationCalculator"),
+);
 
 const router = createHashRouter([
   {
@@ -17,6 +20,14 @@ const router = createHashRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/sign-magnitude-multiplication-calculator",
+        element: (
+          <Suspense fallback={"加载中"}>
+            <SignMagnitudeMultiplicationCalculator />
+          </Suspense>
+        ),
       },
       {
         path: "/booth-multiplication-calculator",

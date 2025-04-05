@@ -1,0 +1,26 @@
+#GlobalHeader {
+  $header-text-color: rgb(221, 221, 221);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  margin: 5px 20px;
+
+  .logo {
+    cursor: pointer;
+    height: 64px;
+    width: 64px;
+    background-image: url("@/assets/HowCalculator.png");
+    background-size: 100% 100%;
+  }
+
+  .menu {
+    flex: 1;
+    min-width: 0;
+    color: $header-text-color;
+    background: rgba(0, 0, 0, 0);
+  }
+}

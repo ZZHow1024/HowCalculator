@@ -239,6 +239,97 @@ export const supplementOneDigitMultiplication = (xb, xfb, yb) => {
   };
 };
 
+// 原码一位乘法
+export const originalCodeOneDigitMultiplication = (xy, yy) => {
+  const res = [];
+
+  let symbol1 = [];
+  let num1 = [];
+  let symbol2 = [];
+  let num2 = [];
+  let extendNum = [];
+
+  let xyStr = (xy[0] ? "11" : "00") + ".";
+  for (let i = 2; i < xy.length; i++) xyStr += xy[i];
+
+  for (let i = 0; i < 2; i++) symbol1.push(0);
+  for (let i = 2; i < xy.length; i++) num1.push(0);
+
+  for (let step = 1; step <= yy.length - 1; step++) {
+    let operate; // 操作
+    let partialProduct; // 部分积
+    let multiplier; // 乘数
+
+    if (yy[yy.length - step]) {
+      // +|X|
+      symbol2 = [];
+      num2 = [];
+
+      operate = "+|X|";
+      partialProduct = "+" + xyStr;
+      for (let i = 0; i < 2; i++) symbol2.push(xy[i]);
+      for (let i = 2; i < xy.length; i++) num2.push(xy[i]);
+
+      const { symbol, num } = addition(symbol1, num1, symbol2, num2);
+      symbol1 = symbol;
+      num1 = num;
+    } else {
+      // 加零
+      operate = "+0";
+      partialProduct = "+00.";
+      for (let i = 0; i < xy.length - 2; i++) partialProduct += "0";
+    }
+
+    partialProduct += "\n\u00A0\u00A0";
+    for (let i = 0; i < symbol1.length + num1.length; i++)
+      partialProduct += "-";
+
+    // 加操作完的部分积
+    partialProduct += "\n\u00A0\u00A0";
+    for (let i = 0; i < symbol1.length; i++) partialProduct += symbol1[i];
+    partialProduct += ".";
+    for (let i = 0; i < num1.length; i++) partialProduct += num1[i];
+
+    // 算术右移（最后一步不右移）
+    if (step !== yy.length) {
+      const res = arithmeticShiftRight(symbol1, num1, extendNum);
+
+      num1 = res.num;
+      extendNum = res.totalNum;
+
+      // 右移后的部分积
+      partialProduct += "\n\u00A0\u00A0";
+      for (let i = 0; i < symbol1.length; i++) partialProduct += symbol1[i];
+      partialProduct += ".";
+      for (let i = 0; i < xy.length - 2; i++) partialProduct += num1[i];
+    }
+
+    // 右移后的乘数
+    multiplier = "";
+    for (let i = 0; i < extendNum.length; i++) multiplier += extendNum[i];
+    if (step !== yy.length) {
+      multiplier += ".";
+      for (let i = 1; i < yy.length - step; i++) multiplier += yy[i];
+    }
+
+    const data = {
+      step: step,
+      operate: operate + (step === yy.length ? "" : "\n\n\n右移→"),
+      partialProduct,
+      multiplier: (step === yy.length ? "\n\n" : "\n\n\n") + multiplier,
+    };
+
+    res.push(data);
+  }
+
+  return {
+    res,
+    symbol1,
+    num1,
+    extendNum,
+  };
+};
+
 // 双符号位相加
 const addition = (symbol1, num1, symbol2, num2) => {
   let c = 0;
@@ -279,8 +370,9 @@ const addition = (symbol1, num1, symbol2, num2) => {
 const arithmeticShiftRight = (symbol1, num1, totalNum) => {
   totalNum = [num1[num1.length - 1], ...totalNum];
 
-  let num = [symbol1[0]];
+  let num = [symbol1[1]];
   for (let i = 0; i < num1.length - 1; i++) num.push(num1[i]);
+  symbol1[1] = symbol1[0];
 
   return {
     symbol1,
