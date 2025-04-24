@@ -254,7 +254,9 @@ export default function Index() {
       <h3>
         XY＝
         {result
-          ? (result[0] === "0" ? "+" : "-") + result.substring(2, result.length)
+          ? (result[0] === "0" ? "+" : "-") +
+            "0." +
+            result.substring(2, result.length)
           : "暂无数据"}
       </h3>
     </div>
