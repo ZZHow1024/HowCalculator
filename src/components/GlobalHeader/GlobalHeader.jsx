@@ -8,6 +8,7 @@ const items = [
   { key: "/sign-magnitude-multiplication-calculator", label: "原码一位乘法" },
   { key: "/booth-multiplication-calculator", label: "补码一位乘法" },
   { key: "/number-base-conversion", label: "数制转换" },
+  { key: "/code-conversion", label: "码制转换" },
 ];
 
 export default function GlobalHeader(props) {

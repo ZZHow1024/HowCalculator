@@ -11,6 +11,7 @@ const NumberBaseConversion = lazy(() => import("@/pages/NumberBaseConversion"));
 const SignMagnitudeMultiplicationCalculator = lazy(
   () => import("@/pages/SignMagnitudeMultiplicationCalculator"),
 );
+const CodeConversion = lazy(() => import("@/pages/CodeConversion"));
 
 const router = createHashRouter([
   {
@@ -42,6 +43,14 @@ const router = createHashRouter([
         element: (
           <Suspense fallback={"加载中"}>
             <NumberBaseConversion />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/code-conversion",
+        element: (
+          <Suspense fallback={"加载中"}>
+            <CodeConversion />
           </Suspense>
         ),
       },

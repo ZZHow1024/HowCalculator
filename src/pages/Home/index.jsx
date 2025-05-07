@@ -53,13 +53,23 @@ export default function Index() {
           </Col>
         </Row>
         <Row>
-          <Col span={24}>
+          <Col span={12}>
             <div className="button-container">
               <div
                 className="button"
                 onClick={() => navigate("/number-base-conversion")}
               >
                 <h1>数制转换</h1>
+              </div>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className="button-container">
+              <div
+                className="button"
+                onClick={() => navigate("/code-conversion")}
+              >
+                <h1>码制转换</h1>
               </div>
             </div>
           </Col>
