@@ -148,21 +148,34 @@ export default function Index() {
           autoComplete="off"
         >
           <Form.Item label="二进制">
-            <Input.TextArea value={binary} onChange={onBinaryChange} />
+            <Input.TextArea
+              value={binary}
+              onChange={onBinaryChange}
+              placeholder="请输入二进制数"
+            />
           </Form.Item>
 
           <Form.Item label="八进制">
-            <Input.TextArea value={octal} onChange={onOctalChange} />
+            <Input.TextArea
+              value={octal}
+              onChange={onOctalChange}
+              placeholder="请输入八进制数"
+            />
           </Form.Item>
 
           <Form.Item label="十进制">
-            <Input.TextArea value={decimal} onChange={onDecimalChange} />
+            <Input.TextArea
+              value={decimal}
+              onChange={onDecimalChange}
+              placeholder="请输入十进制数"
+            />
           </Form.Item>
 
           <Form.Item label="十六进制">
             <Input.TextArea
               value={hexadecimal}
               onChange={onHexadecimalChange}
+              placeholder="请输入十六进制数"
             />
           </Form.Item>
 
