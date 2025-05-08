@@ -22,8 +22,16 @@ export default function MemoryAddressDataCalculator() {
   const updateAddressLines = () => {
     const result = calculateAddressLines(capacity, unit);
     setAddressLines(result);
-    
+
     // 更新地址线计算过程文本
+    const unitMultiplierStr =
+      unit === "K"
+        ? "1024"
+        : unit === "M"
+          ? "1024 × 1024"
+          : unit === "G"
+            ? "1024 × 1024 × 1024"
+            : "1";
     const unitMultiplier =
       unit === "K"
         ? 1024
@@ -33,16 +41,16 @@ export default function MemoryAddressDataCalculator() {
             ? 1024 * 1024 * 1024
             : 1;
     const totalBytes = capacity * unitMultiplier;
-    const process = `计算过程：地址线数量 = log2(字数) = log2(${capacity}${unit ? ` × ${unitMultiplier}` : ""}) = log2(${totalBytes}) = ${result}`;
+    const process = `地址线数量 = log₂(字数) = log₂(${capacity} × ${unitMultiplierStr}) = log₂(${totalBytes}) = ${result}`;
     setAddressCalcProcess(process);
   };
 
   const updateDataLines = () => {
     const result = calculateDataLines(wordLength);
     setDataLines(result);
-    
+
     // 更新数据线计算过程文本
-    const process = `计算过程：数据线数量 = 每个字的位数 = ${wordLength}`;
+    const process = `数据线数量 = 每个字的位数 = ${wordLength}`;
     setDataCalcProcess(process);
   };
 
@@ -101,15 +109,6 @@ export default function MemoryAddressDataCalculator() {
     setCapacity("2");
     setUnit("");
     setWordLength("1");
-    // 重置后需要更新计算过程
-    setTimeout(() => {
-      if (validateCapacityInput()) {
-        updateAddressLines();
-      }
-      if (validateWordLengthInput()) {
-        updateDataLines();
-      }
-    }, 0);
   };
 
   useEffect(() => {
@@ -139,7 +138,7 @@ export default function MemoryAddressDataCalculator() {
       </Breadcrumb>
 
       <div className="content-container">
-        <div>存储器芯片的容量通常用 a×b 表示</div>
+        <div>提示：存储器芯片的容量通常用 a×b 表示</div>
         <div>a 为字数，即单元数；b 为每个字的位数</div>
         <Form
           className="form"
@@ -180,12 +179,12 @@ export default function MemoryAddressDataCalculator() {
           </Form.Item>
           <Form.Item label="地址线数量">
             <Input value={addressLines} readOnly />
-            <div>{addressCalcProcess}</div>
           </Form.Item>
+          <div className="calculation-process">{addressCalcProcess}</div>
           <Form.Item label="数据线数量">
             <Input value={dataLines} readOnly />
-            <div>{dataCalcProcess}</div>
           </Form.Item>
+          <div className="calculation-process">{dataCalcProcess}</div>
           <Form.Item style={{ display: "flex", justifyContent: "center" }}>
             <Button type="primary" onClick={onClear}>
               清空
