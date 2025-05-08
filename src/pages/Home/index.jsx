@@ -53,6 +53,18 @@ export default function Index() {
           </Col>
         </Row>
         <Row>
+          <Col span={24}>
+            <div className="button-container">
+              <div
+                className="button"
+                onClick={() => navigate("/memory-address-data-calculator")}
+              >
+                <h1>存储器线数</h1>
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <Row>
           <Col span={12}>
             <div className="button-container">
               <div

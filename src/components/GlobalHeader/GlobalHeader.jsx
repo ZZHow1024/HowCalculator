@@ -7,6 +7,7 @@ const items = [
   { key: "/", label: "首页" },
   { key: "/sign-magnitude-multiplication-calculator", label: "原码一位乘法" },
   { key: "/booth-multiplication-calculator", label: "补码一位乘法" },
+  { key: "/memory-address-data-calculator", label: "存储器线数" },
   { key: "/number-base-conversion", label: "数制转换" },
   { key: "/code-conversion", label: "码制转换" },
 ];
