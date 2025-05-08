@@ -1,0 +1,38 @@
+#MemoryAddressDataCalculator {
+  text-align: center;
+
+  .breadcrumb {
+    margin-top: 8px;
+    margin-left: 15px;
+
+    .breadcrumb-item {
+      cursor: pointer;
+    }
+  }
+
+  .content-container {
+    display: block;
+    justify-items: center;
+
+    .form {
+      width: 80vw;
+
+      .multiplication-sign {
+        font-size: 30px;
+        margin: auto 20px;
+      }
+
+      .calculation-process {
+        margin-top: -10px;
+        margin-bottom: 30px;
+        font-size: 20px;
+      }
+    }
+
+    .specification-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

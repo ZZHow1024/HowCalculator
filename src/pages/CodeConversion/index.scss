@@ -1,0 +1,27 @@
+#CodeConversion {
+   text-align: center;
+
+   .breadcrumb {
+     margin-top: 8px;
+     margin-left: 15px;
+
+     .breadcrumb-item {
+       cursor: pointer;
+     }
+   }
+
+   .content-container {
+     display: block;
+     justify-items: center;
+
+     .symbol-btn {
+       display: flex;
+       justify-content: center;
+       margin: 10px auto;
+     }
+
+     .form {
+       width: 80vw;
+     }
+   }
+ }

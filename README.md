@@ -3,8 +3,8 @@
   <h1>HowCalculator</h1>
 </div>
 <div align="center" style="line-height: 1;">
-  <a href="https://tool.zzhow.com/calculator"><img alt="HowCalculator0.3.1"
-    src="https://img.shields.io/badge/HowCalculator-v0.3.1-blue"/></a>
+  <a href="https://tool.zzhow.com/calculator"><img alt="HowCalculator0.4.0"
+    src="https://img.shields.io/badge/HowCalculator-v0.4.0-blue"/></a>
   <a href="LICENSE"><img alt="Code License"
     src="https://img.shields.io/github/license/ZZHow1024/HowCalculator"></a>
 </div>
@@ -51,6 +51,9 @@ https://github.com/ZZHow1024/HowCalculator
 
 ## 更新日志
 
+- 0.4.0
+    - 新增：码制转换
+    - 新增：存储器线数计算
 - 0.3.1
     - 修复：原码一位乘法结果的显示问题
 - 0.3.0

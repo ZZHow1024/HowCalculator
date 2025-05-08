@@ -13,7 +13,7 @@ export default function Index() {
       <div className="content-container">
         <div className="logo" />
         <div className="content-text">HowCalculator</div>
-        <div className="content-text">Version: 0.3.1（公测版）</div>
+        <div className="content-text">Version: 0.4.0（公测版）</div>
         <div>
           <span className="content-text-small">GitHub 仓库：</span>
           <a
@@ -57,9 +57,31 @@ export default function Index() {
             <div className="button-container">
               <div
                 className="button"
+                onClick={() => navigate("/memory-address-data-calculator")}
+              >
+                <h1>存储器线数</h1>
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>
+            <div className="button-container">
+              <div
+                className="button"
                 onClick={() => navigate("/number-base-conversion")}
               >
                 <h1>数制转换</h1>
+              </div>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className="button-container">
+              <div
+                className="button"
+                onClick={() => navigate("/code-conversion")}
+              >
+                <h1>码制转换</h1>
               </div>
             </div>
           </Col>

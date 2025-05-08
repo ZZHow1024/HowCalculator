@@ -3,8 +3,8 @@
   <h1>HowCalculator</h1>
 </div>
 <div align="center" style="line-height: 1;">
-  <a href="https://tool.zzhow.com/calculator"><img alt="HowCalculator0.3.1"
-    src="https://img.shields.io/badge/HowCalculator-v0.3.1-blue"/></a>
+  <a href="https://tool.zzhow.com/calculator"><img alt="HowCalculator0.4.0"
+    src="https://img.shields.io/badge/HowCalculator-v0.4.0-blue"/></a>
   <a href="LICENSE"><img alt="Code License"
     src="https://img.shields.io/github/license/ZZHow1024/HowCalculator"></a>
 </div>
@@ -52,8 +52,11 @@ the [LICENSE](https://github.com/ZZHow1024/HowCalculator/blob/main/LICENSE) file
 
 ## Changelog
 
+- 0.4.0
+    - feat: Add memory lane calculation
+    - feat: Add code conversion
 - 0.3.1
-    - fix: resolve display issue of one-digit multiplication for true form result
+    - fix: Resolve display issue of one-digit multiplication for true form result
 - 0.3.0
     - feat: Add one-digit multiplication for true form
 - 0.2.1
