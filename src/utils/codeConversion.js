@@ -115,7 +115,8 @@ export function getCodesFromTwosComplement(twosComplement) {
   }
   
   // 负数，先求反码（补码-1）
-  let onesComplement = signBit;
+  // 保持符号位不变
+  let onesComplement = "";
   let borrow = 1;
   const digits = twosComplement.slice(1).split("").reverse();
   
@@ -131,6 +132,9 @@ export function getCodesFromTwosComplement(twosComplement) {
       onesComplement = digits[i] + onesComplement;
     }
   }
+  
+  // 添加符号位
+  onesComplement = signBit + onesComplement;
   
   // 原码 = 反码取反（符号位不变）
   const original = signBit + 
