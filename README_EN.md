@@ -3,8 +3,8 @@
   <h1>HowCalculator</h1>
 </div>
 <div align="center" style="line-height: 1;">
-  <a href="https://tool.zzhow.com/calculator"><img alt="HowCalculator0.4.0"
-    src="https://img.shields.io/badge/HowCalculator-v0.4.0-blue"/></a>
+  <a href="https://tool.zzhow.com/calculator"><img alt="HowCalculator0.4.1"
+    src="https://img.shields.io/badge/HowCalculator-v0.4.1-blue"/></a>
   <a href="LICENSE"><img alt="Code License"
     src="https://img.shields.io/github/license/ZZHow1024/HowCalculator"></a>
 </div>
@@ -31,8 +31,7 @@ https://github.com/ZZHow1024/HowCalculator
 
 ## What is it?
 
-- **HowCalculator** is an online calculator that focuses more on computational processes related to the principles of
-  computer composition, and now supports **complementary one-bit multiplication** and **number conversion**.
+**HowCalculator** is an online calculator that focuses more on the calculation process related to the computer organization principle. It now supports **original code single-bit multiplication**, **complement code single-bit multiplication**, **memory line number**, **number system conversion** and **code system conversion**.
 
 ---
 
@@ -52,6 +51,8 @@ the [LICENSE](https://github.com/ZZHow1024/HowCalculator/blob/main/LICENSE) file
 
 ## Changelog
 
+- 0.4.1
+  - fix: Correct signed bit multiplication error in one-bit multiplier
 - 0.4.0
     - feat: Add memory lane calculation
     - feat: Add code conversion

@@ -3,8 +3,8 @@
   <h1>HowCalculator</h1>
 </div>
 <div align="center" style="line-height: 1;">
-  <a href="https://tool.zzhow.com/calculator"><img alt="HowCalculator0.4.0"
-    src="https://img.shields.io/badge/HowCalculator-v0.4.0-blue"/></a>
+  <a href="https://tool.zzhow.com/calculator"><img alt="HowCalculator0.4.1"
+    src="https://img.shields.io/badge/HowCalculator-v0.4.1-blue"/></a>
   <a href="LICENSE"><img alt="Code License"
     src="https://img.shields.io/github/license/ZZHow1024/HowCalculator"></a>
 </div>
@@ -31,7 +31,7 @@ https://github.com/ZZHow1024/HowCalculator
 
 ## 它是什么？
 
-**HowCalculator** 是一款在线计算器，它更关注于计算机组成原理相关的计算过程，现已支持 **补码一位乘法** 和 **数制转换**。
+**HowCalculator** 是一款在线计算器，它更关注于计算机组成原理相关的计算过程，现已支持 **原码一位乘法**、**补码一位乘法**、**存储器线数**、**数制转换** 和 **码制转换**。
 
 ---
 
@@ -51,6 +51,8 @@ https://github.com/ZZHow1024/HowCalculator
 
 ## 更新日志
 
+- 0.4.1
+  - 修复：原码一位乘法中的符号位错误
 - 0.4.0
     - 新增：码制转换
     - 新增：存储器线数计算

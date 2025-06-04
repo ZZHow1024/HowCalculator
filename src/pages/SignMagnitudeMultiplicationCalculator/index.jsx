@@ -95,13 +95,13 @@ export default function Index() {
 
   const initialization = () => {
     const yNum1 = [];
-    yNum1.push(parseInt(symbol1));
-    yNum1.push(parseInt(symbol1));
+    yNum1.push(0);
+    yNum1.push(0);
     for (let i = 0; i < num1.length; i++) yNum1.push(parseInt(num1[i]));
     setYNum1(yNum1);
 
     const yNum2 = [];
-    yNum2.push(parseInt(symbol2));
+    yNum2.push(0);
     for (let i = 0; i < num2.length; i++) yNum2.push(parseInt(num2[i]));
     setYNum2(yNum2);
 
@@ -128,13 +128,15 @@ export default function Index() {
   const onCalculate = () => {
     const initRes = initialization();
 
-    const { res, symbol1, num1, extendNum } =
-      originalCodeOneDigitMultiplication(initRes.yNum1, initRes.yNum2);
+    const { res, num1, extendNum } = originalCodeOneDigitMultiplication(
+      initRes.yNum1,
+      initRes.yNum2,
+    );
 
     setData([initRes.ddata, ...res]);
 
     let str = "";
-    str += (symbol1[0] ^ symbol2[0]) + ".";
+    str += (symbol1 === symbol2 ? 0 : 1) + ".";
     for (let i = 0; i < num1.length; i++) str += num1[i];
     for (let i = 0; i < extendNum.length; i++) str += extendNum[i];
     setResult(str);
@@ -195,8 +197,8 @@ export default function Index() {
             onChange={(e) => onNumChange(1, e)}
           />
         </div>
-        <div className="output-content">[X]原 = {xy}</div>
-        <div className="output-content">[Y]原 = {yy}</div>
+        <div className="output-content">|X|原 = {xy}</div>
+        <div className="output-content">|Y|原 = {yy}</div>
         <Button
           type="primary"
           onClick={onClear}
