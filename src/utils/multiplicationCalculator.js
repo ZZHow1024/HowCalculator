@@ -324,7 +324,6 @@ export const originalCodeOneDigitMultiplication = (xy, yy) => {
 
   return {
     res,
-    symbol1,
     num1,
     extendNum,
   };
